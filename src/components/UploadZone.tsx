@@ -41,7 +41,7 @@ export function UploadZone({ onImageSelect, isAnalyzing }: UploadZoneProps) {
         className={cn(
           "relative rounded-2xl border-2 border-dashed p-12 text-center transition-all duration-300",
           isDragging
-            ? "border-primary bg-primary/5 scale-105 glow-teal"
+            ? "border-primary bg-primary/5 scale-105 glow-green"
             : "border-border hover:border-primary/50 hover:bg-muted/50",
           isAnalyzing && "pointer-events-none opacity-50"
         )}
@@ -66,7 +66,7 @@ export function UploadZone({ onImageSelect, isAnalyzing }: UploadZoneProps) {
             <Button
               onClick={() => fileInputRef.current?.click()}
               disabled={isAnalyzing}
-              className="gradient-teal hover:opacity-90 transition-smooth text-white font-medium px-8 py-6 text-lg rounded-xl"
+              className="gradient-nature hover:opacity-90 transition-smooth text-white font-medium px-8 py-6 text-lg rounded-xl"
             >
               <Upload className="mr-2 h-5 w-5" />
               Choose File

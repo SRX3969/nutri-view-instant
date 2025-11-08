@@ -50,6 +50,7 @@ export default {
         },
         gold: {
           DEFAULT: "hsl(var(--gold))",
+          start: "hsl(var(--gold-start))",
           end: "hsl(var(--gold-end))",
         },
       },

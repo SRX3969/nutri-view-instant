@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { UploadZone } from "@/components/UploadZone";
 import { ResultsSection } from "@/components/ResultsSection";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowDown } from "lucide-react";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 interface NutritionData {
   calories: number;
@@ -60,6 +61,11 @@ const Index = () => {
     setImageUrl("");
   };
 
+  const scrollToUpload = () => {
+    const uploadSection = document.getElementById("upload-section");
+    uploadSection?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -68,28 +74,41 @@ const Index = () => {
         {!results ? (
           <div className="space-y-12">
             {/* Hero Section */}
-            <div className="text-center space-y-4 animate-fade-in">
-              <h1 className="text-5xl md:text-7xl font-bold">
-                <span className="gradient-teal bg-clip-text text-transparent">
-                  See what you eat
+            <div className="relative min-h-[60vh] flex flex-col items-center justify-center text-center space-y-6 animate-fade-in">
+              {/* Background overlay for readability */}
+              <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/95 via-background/80 to-background" />
+              
+              <h1 className="text-5xl md:text-7xl font-bold drop-shadow-lg">
+                <span className="gradient-nature bg-clip-text text-transparent" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}>
+                  See what you eat — naturally
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-                Instantly analyze your meals with AI-powered nutrition insights
+              <p className="text-xl md:text-2xl text-foreground max-w-2xl mx-auto drop-shadow-md font-medium">
+                Upload your meal photo. Let AI break down your nutrition in seconds.
               </p>
+              <Button
+                onClick={scrollToUpload}
+                size="lg"
+                className="gradient-gold hover:opacity-90 transition-smooth text-white font-medium px-8 py-6 text-lg rounded-xl shadow-lg mt-4"
+              >
+                Analyze My Meal
+                <ArrowDown className="ml-2 h-5 w-5 animate-bounce" />
+              </Button>
             </div>
 
             {/* Upload Zone */}
-            {isAnalyzing ? (
-              <div className="flex flex-col items-center justify-center py-20 space-y-4">
-                <Loader2 className="h-16 w-16 animate-spin text-primary" />
-                <p className="text-lg text-muted-foreground animate-pulse">
-                  Analyzing your meal...
-                </p>
-              </div>
-            ) : (
-              <UploadZone onImageSelect={analyzeImage} isAnalyzing={isAnalyzing} />
-            )}
+            <div id="upload-section" className="scroll-mt-32">
+              {isAnalyzing ? (
+                <div className="flex flex-col items-center justify-center py-20 space-y-4">
+                  <Loader2 className="h-16 w-16 animate-spin text-primary" />
+                  <p className="text-lg text-muted-foreground animate-pulse">
+                    Analyzing your meal...
+                  </p>
+                </div>
+              ) : (
+                <UploadZone onImageSelect={analyzeImage} isAnalyzing={isAnalyzing} />
+              )}
+            </div>
           </div>
         ) : (
           <ResultsSection
