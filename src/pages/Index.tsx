@@ -33,30 +33,49 @@ const Index = () => {
     setImageUrl(url);
 
     try {
-      // Simulate API call - in production, this would call /api/analyze
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Convert image to base64
+      const reader = new FileReader();
+      const base64Promise = new Promise<string>((resolve, reject) => {
+        reader.onload = () => {
+          const base64 = reader.result as string;
+          resolve(base64);
+        };
+        reader.onerror = reject;
+      });
+      reader.readAsDataURL(file);
+      const imageBase64 = await base64Promise;
 
-      // Mock response data
-      const mockData: NutritionData = {
-        calories: 450,
-        protein: 32,
-        carbs: 45,
-        fat: 18,
-        servingSize: "1 plate (250g)",
-        foodType: "Grilled Chicken with Vegetables",
-        tips: [
-          "High in Protein - Great for muscle recovery",
-          "Balanced macronutrients for sustained energy",
-          "Rich in vitamins from fresh vegetables",
-          "Low in processed ingredients",
-        ],
-      };
+      console.log("Sending image to AI for analysis...");
+      
+      // Call the edge function
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-nutrition`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ imageBase64 }),
+        }
+      );
 
-      setResults(mockData);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to analyze image");
+      }
+
+      const nutritionData: NutritionData = await response.json();
+      console.log("Analysis complete:", nutritionData);
+
+      setResults(nutritionData);
       toast.success("Analysis complete!");
     } catch (error) {
-      toast.error("Failed to analyze image. Please try again.");
-      console.error(error);
+      console.error("Analysis error:", error);
+      toast.error(
+        error instanceof Error 
+          ? error.message 
+          : "Failed to analyze image. Please try again."
+      );
     } finally {
       setIsAnalyzing(false);
     }
