@@ -39,25 +39,25 @@ export function UploadZone({ onImageSelect, isAnalyzing }: UploadZoneProps) {
         onDragLeave={() => setIsDragging(false)}
         onDrop={handleDrop}
         className={cn(
-          "relative rounded-2xl border-2 border-dashed p-12 text-center transition-all duration-300",
+          "relative rounded-2xl border-2 border-dashed p-12 text-center transition-all duration-500",
           isDragging
-            ? "border-primary bg-primary/5 scale-105 glow-green"
-            : "border-border hover:border-primary/50 hover:bg-muted/50",
+            ? "border-primary bg-primary/10 scale-105 glow-green shadow-2xl"
+            : "border-border hover:border-primary/50 hover:bg-primary/5 hover-lift",
           isAnalyzing && "pointer-events-none opacity-50"
         )}
       >
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div className="flex justify-center">
-            <div className="rounded-full bg-primary/10 p-6 transition-smooth hover:scale-110">
-              <Upload className="h-12 w-12 text-primary" />
+            <div className="rounded-full bg-primary/10 p-8 transition-smooth hover:scale-110 hover:bg-primary/20 glow-green">
+              <Upload className="h-16 w-16 text-primary" />
             </div>
           </div>
           
-          <div className="space-y-2">
-            <h3 className="text-2xl font-semibold text-foreground">
+          <div className="space-y-3">
+            <h3 className="text-3xl font-bold text-foreground">
               Upload Your Meal
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-lg text-muted-foreground">
               Drag and drop an image, or click to browse
             </p>
           </div>
@@ -66,9 +66,9 @@ export function UploadZone({ onImageSelect, isAnalyzing }: UploadZoneProps) {
             <Button
               onClick={() => fileInputRef.current?.click()}
               disabled={isAnalyzing}
-              className="gradient-nature hover:opacity-90 transition-smooth text-white font-medium px-8 py-6 text-lg rounded-xl"
+              className="gradient-nature hover:opacity-90 hover:scale-105 transition-smooth text-white font-bold px-10 py-7 text-xl rounded-xl shadow-lg"
             >
-              <Upload className="mr-2 h-5 w-5" />
+              <Upload className="mr-2 h-6 w-6" />
               Choose File
             </Button>
 
@@ -76,9 +76,9 @@ export function UploadZone({ onImageSelect, isAnalyzing }: UploadZoneProps) {
               onClick={() => cameraInputRef.current?.click()}
               disabled={isAnalyzing}
               variant="outline"
-              className="border-primary text-primary hover:bg-primary/10 transition-smooth px-8 py-6 text-lg rounded-xl"
+              className="border-2 border-primary text-primary hover:bg-primary/10 hover:scale-105 transition-smooth px-10 py-7 text-xl rounded-xl font-bold"
             >
-              <Camera className="mr-2 h-5 w-5" />
+              <Camera className="mr-2 h-6 w-6" />
               Take Photo
             </Button>
           </div>
