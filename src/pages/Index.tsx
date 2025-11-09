@@ -84,19 +84,23 @@ const Index = () => {
             <div className="relative min-h-[70vh] flex flex-col items-center justify-center text-center space-y-8">
               {/* Animated gradient background */}
               <div className="absolute inset-0 -z-10">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-accent/10 to-background" />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5 animate-pulse" style={{ animationDuration: "4s" }} />
+                <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
               </div>
               
-              <div className="space-y-6 animate-fade-in">
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-shadow-strong">
-                  <span className="gradient-nature bg-clip-text text-transparent">
-                    See what you eat — naturally
-                  </span>
-                </h1>
-                <p className="text-xl md:text-2xl lg:text-3xl text-foreground max-w-3xl mx-auto text-shadow-soft font-medium opacity-90">
-                  Upload your meal photo. Let AI break down your nutrition in seconds.
-                </p>
+              <div className="space-y-6 animate-fade-in relative">
+                {/* Background card for better contrast */}
+                <div className="absolute inset-0 -z-10 bg-card/60 backdrop-blur-xl rounded-3xl border border-primary/20 shadow-2xl" />
+                
+                <div className="px-8 md:px-16 py-12">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4">
+                    <span className="text-foreground">
+                      See what you eat — <span className="gradient-nature bg-clip-text text-transparent">naturally</span>
+                    </span>
+                  </h1>
+                  <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto font-medium">
+                    Upload your meal photo. Let AI break down your nutrition in seconds.
+                  </p>
+                </div>
               </div>
 
               <Button
