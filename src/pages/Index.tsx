@@ -6,7 +6,6 @@ import { FloatingElements } from "@/components/FloatingElements";
 import { Loader2, ArrowDown } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-
 interface NutritionData {
   calories: number;
   protein: number;
@@ -16,22 +15,18 @@ interface NutritionData {
   foodType: string;
   tips: string[];
 }
-
 const Index = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [results, setResults] = useState<NutritionData | null>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [showHero, setShowHero] = useState(true);
-
   useEffect(() => {
     setShowHero(true);
   }, []);
-
   const analyzeImage = async (file: File) => {
     setIsAnalyzing(true);
     const url = URL.createObjectURL(file);
     setImageUrl(url);
-
     try {
       // Convert image to base64
       const reader = new FileReader();
@@ -44,61 +39,49 @@ const Index = () => {
       });
       reader.readAsDataURL(file);
       const imageBase64 = await base64Promise;
-
       console.log("Sending image to AI for analysis...");
-      
-      // Call the edge function
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-nutrition`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ imageBase64 }),
-        }
-      );
 
+      // Call the edge function
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-nutrition`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          imageBase64
+        })
+      });
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to analyze image");
       }
-
       const nutritionData: NutritionData = await response.json();
       console.log("Analysis complete:", nutritionData);
-
       setResults(nutritionData);
       toast.success("Analysis complete!");
     } catch (error) {
       console.error("Analysis error:", error);
-      toast.error(
-        error instanceof Error 
-          ? error.message 
-          : "Failed to analyze image. Please try again."
-      );
+      toast.error(error instanceof Error ? error.message : "Failed to analyze image. Please try again.");
     } finally {
       setIsAnalyzing(false);
     }
   };
-
   const handleAnalyzeAnother = () => {
     setResults(null);
     setImageUrl("");
   };
-
   const scrollToUpload = () => {
     const uploadSection = document.getElementById("upload-section");
-    uploadSection?.scrollIntoView({ behavior: "smooth" });
+    uploadSection?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
+  return <div className="min-h-screen bg-background relative overflow-hidden">
       <FloatingElements />
       <Navbar />
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-10">
-        {!results ? (
-          <div className="space-y-12">
+        {!results ? <div className="space-y-12">
             {/* Hero Section */}
             <div className="relative min-h-[70vh] flex flex-col items-center justify-center text-center space-y-8">
               {/* Animated gradient background */}
@@ -113,7 +96,7 @@ const Index = () => {
                 <div className="px-8 md:px-16 py-12">
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4">
                     <span className="text-foreground">
-                      See what you eat — <span className="gradient-nature bg-clip-text text-transparent">naturally</span>
+                      See what you eat — <span className="gradient-nature bg-clip-text text-slate-50 text-lg">naturally</span>
                     </span>
                   </h1>
                   <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto font-medium">
@@ -122,12 +105,9 @@ const Index = () => {
                 </div>
               </div>
 
-              <Button
-                onClick={scrollToUpload}
-                size="lg"
-                className="gradient-gold hover:opacity-90 transition-smooth text-white font-bold px-10 py-7 text-xl rounded-2xl shadow-2xl mt-6 pulse-glow animate-scale-in hover:scale-105"
-                style={{ animationDelay: "0.3s" }}
-              >
+              <Button onClick={scrollToUpload} size="lg" className="gradient-gold hover:opacity-90 transition-smooth text-white font-bold px-10 py-7 text-xl rounded-2xl shadow-2xl mt-6 pulse-glow animate-scale-in hover:scale-105" style={{
+            animationDelay: "0.3s"
+          }}>
                 Analyze My Meal
                 <ArrowDown className="ml-3 h-6 w-6 animate-bounce" />
               </Button>
@@ -135,8 +115,7 @@ const Index = () => {
 
             {/* Upload Zone */}
             <div id="upload-section" className="scroll-mt-32">
-              {isAnalyzing ? (
-                <div className="flex flex-col items-center justify-center py-20 space-y-6 animate-fade-in">
+              {isAnalyzing ? <div className="flex flex-col items-center justify-center py-20 space-y-6 animate-fade-in">
                   <div className="relative">
                     <Loader2 className="h-20 w-20 animate-spin text-primary" />
                     <div className="absolute inset-0 h-20 w-20 animate-ping text-primary/20">
@@ -146,19 +125,9 @@ const Index = () => {
                   <p className="text-xl text-muted-foreground animate-pulse font-medium">
                     Analyzing your meal...
                   </p>
-                </div>
-              ) : (
-                <UploadZone onImageSelect={analyzeImage} isAnalyzing={isAnalyzing} />
-              )}
+                </div> : <UploadZone onImageSelect={analyzeImage} isAnalyzing={isAnalyzing} />}
             </div>
-          </div>
-        ) : (
-          <ResultsSection
-            data={results}
-            imageUrl={imageUrl}
-            onAnalyzeAnother={handleAnalyzeAnother}
-          />
-        )}
+          </div> : <ResultsSection data={results} imageUrl={imageUrl} onAnalyzeAnother={handleAnalyzeAnother} />}
       </main>
 
       {/* Footer */}
@@ -169,8 +138,6 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
