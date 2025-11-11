@@ -6,11 +6,13 @@
 All colors MUST be HSL.
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
-    /* NutriLens Light Mode - Nature-Inspired Premium */
-    --background: 80 40% 97%;
-    --foreground: 140 100% 10%;
+    /* Nutri-View Instant Light Mode - Fresh & Clean */
+    --background: 0 0% 100%;
+    --foreground: 142 70% 15%;
 
     --card: 0 0% 100%;
     --card-foreground: 140 100% 10%;
@@ -18,14 +20,14 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 140 100% 10%;
 
-    /* Forest green primary */
-    --primary: 140 67% 23%;
+    /* Mint Green Primary #7BC47F */
+    --primary: 142 52% 62%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 140 67% 35%;
+    --primary-light: 142 52% 75%;
     
-    /* Mint green highlights */
-    --secondary: 142 47% 78%;
-    --secondary-foreground: 140 100% 10%;
+    /* Soft gray secondary */
+    --secondary: 210 20% 98%;
+    --secondary-foreground: 220 10% 30%;
 
     --muted: 80 60% 95%;
     --muted-foreground: 0 0% 45%;

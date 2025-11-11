@@ -1,18 +1,16 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-interface MacroPieChartProps {
-  protein: number;
-  carbs: number;
-  fat: number;
+interface ChartData {
+  name: string;
+  value: number;
+  color: string;
 }
 
-export function MacroPieChart({ protein, carbs, fat }: MacroPieChartProps) {
-  const data = [
-    { name: "Protein", value: protein, color: "hsl(var(--primary))" },
-    { name: "Carbs", value: carbs, color: "hsl(var(--accent))" },
-    { name: "Fat", value: fat, color: "hsl(var(--gold))" },
-  ];
+interface MacroPieChartProps {
+  data: ChartData[];
+}
 
+export function MacroPieChart({ data }: MacroPieChartProps) {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <PieChart>

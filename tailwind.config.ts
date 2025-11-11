@@ -113,7 +113,7 @@ export default {
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Poppins", "Inter", "system-ui", "sans-serif"],
       },
     },
   },

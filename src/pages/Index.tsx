@@ -20,6 +20,7 @@ const Index = () => {
   const [results, setResults] = useState<NutritionData | null>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [showHero, setShowHero] = useState(true);
+  
   useEffect(() => {
     setShowHero(true);
   }, []);
@@ -94,14 +95,20 @@ const Index = () => {
                 <div className="absolute inset-0 -z-10 bg-card/60 backdrop-blur-xl rounded-3xl border border-primary/20 shadow-2xl" />
                 
                 <div className="px-8 md:px-16 py-12">
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4">
-                    <span className="text-foreground">
-                      See what you eat — <span className="gradient-nature bg-clip-text text-slate-50 text-lg">naturally</span>
-                    </span>
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 text-foreground">
+                    Track your nutrition instantly.
                   </h1>
-                  <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto font-medium">
-                    Upload your meal photo. Let AI break down your nutrition in seconds.
+                  <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+                    AI-powered food insights and personalized recommendations — anytime, anywhere.
                   </p>
+                  <div className="flex gap-4 justify-center mt-6">
+                    <Button onClick={scrollToUpload} size="lg" className="text-lg">
+                      Get Started
+                    </Button>
+                    <Button onClick={scrollToUpload} size="lg" variant="outline" className="text-lg">
+                      Try Demo
+                    </Button>
+                  </div>
                 </div>
               </div>
 
