@@ -14,7 +14,108 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      food_logs: {
+        Row: {
+          calories: number
+          carbs: number | null
+          created_at: string | null
+          fat: number | null
+          food_name: string
+          id: string
+          image_url: string | null
+          logged_at: string | null
+          meal_type: string | null
+          notes: string | null
+          protein: number | null
+          serving_size: string | null
+          user_id: string
+        }
+        Insert: {
+          calories: number
+          carbs?: number | null
+          created_at?: string | null
+          fat?: number | null
+          food_name: string
+          id?: string
+          image_url?: string | null
+          logged_at?: string | null
+          meal_type?: string | null
+          notes?: string | null
+          protein?: number | null
+          serving_size?: string | null
+          user_id: string
+        }
+        Update: {
+          calories?: number
+          carbs?: number | null
+          created_at?: string | null
+          fat?: number | null
+          food_name?: string
+          id?: string
+          image_url?: string | null
+          logged_at?: string | null
+          meal_type?: string | null
+          notes?: string | null
+          protein?: number | null
+          serving_size?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          created_at: string | null
+          daily_calorie_goal: number | null
+          daily_carbs_goal: number | null
+          daily_fat_goal: number | null
+          daily_protein_goal: number | null
+          dietary_preference: string | null
+          full_name: string | null
+          gender: string | null
+          health_goal: string | null
+          height: number | null
+          id: string
+          is_first_login: boolean | null
+          updated_at: string | null
+          weight: number | null
+        }
+        Insert: {
+          age?: number | null
+          created_at?: string | null
+          daily_calorie_goal?: number | null
+          daily_carbs_goal?: number | null
+          daily_fat_goal?: number | null
+          daily_protein_goal?: number | null
+          dietary_preference?: string | null
+          full_name?: string | null
+          gender?: string | null
+          health_goal?: string | null
+          height?: number | null
+          id: string
+          is_first_login?: boolean | null
+          updated_at?: string | null
+          weight?: number | null
+        }
+        Update: {
+          age?: number | null
+          created_at?: string | null
+          daily_calorie_goal?: number | null
+          daily_carbs_goal?: number | null
+          daily_fat_goal?: number | null
+          daily_protein_goal?: number | null
+          dietary_preference?: string | null
+          full_name?: string | null
+          gender?: string | null
+          health_goal?: string | null
+          height?: number | null
+          id?: string
+          is_first_login?: boolean | null
+          updated_at?: string | null
+          weight?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
