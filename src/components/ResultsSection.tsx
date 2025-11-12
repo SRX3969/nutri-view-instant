@@ -39,6 +39,20 @@ export function ResultsSection({
   const macroData = [{
     name: "Protein",
     value: data.protein,
+    color: "#7BC47F"
+  }, {
+    name: "Carbs",
+    value: data.carbs,
+    color: "#60A5FA"
+  }, {
+    name: "Fat",
+    value: data.fat,
+    color: "#FBBF24"
+  }];
+  
+  const macroProgressData = [{
+    name: "Protein",
+    value: data.protein,
     max: 100
   }, {
     name: "Carbs",
@@ -99,12 +113,12 @@ export function ResultsSection({
           <Apple className="h-6 w-6 text-accent" />
           Macronutrient Distribution
         </h4>
-        <MacroPieChart protein={data.protein} carbs={data.carbs} fat={data.fat} />
+        <MacroPieChart data={macroData} />
       </Card>
 
       {/* Macros Grid */}
       <div className="grid md:grid-cols-3 gap-6">
-        {macroData.map((macro, index) => <Card key={macro.name} className="glass border-primary/20 p-6 space-y-4 animate-scale-in hover-lift" style={{
+        {macroProgressData.map((macro, index) => <Card key={macro.name} className="glass border-primary/20 p-6 space-y-4 animate-scale-in hover-lift" style={{
         animationDelay: `${0.3 + index * 0.1}s`
       }}>
             <div className="flex justify-between items-center">
