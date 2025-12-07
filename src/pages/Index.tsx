@@ -136,21 +136,21 @@ const Index = () => {
             <div id="content-section" className="scroll-mt-32">
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList className="grid w-full grid-cols-4 h-auto p-2 bg-muted/50 rounded-2xl mb-8">
-                  <TabsTrigger value="upload" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
-                    <Camera className="h-5 w-5" />
-                    <span className="text-sm md:text-base">Upload/Click</span>
+                  <TabsTrigger value="upload" className="flex flex-col items-center justify-center text-center gap-1 md:gap-2 py-3 md:py-4 px-1 md:px-3 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
+                    <Camera className="h-4 w-4 md:h-5 md:w-5 shrink-0" />
+                    <span className="text-xs md:text-sm leading-tight">Upload</span>
                   </TabsTrigger>
-                  <TabsTrigger value="search" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
-                    <Search className="h-5 w-5" />
-                    <span className="text-sm md:text-base">Search Food</span>
+                  <TabsTrigger value="search" className="flex flex-col items-center justify-center text-center gap-1 md:gap-2 py-3 md:py-4 px-1 md:px-3 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
+                    <Search className="h-4 w-4 md:h-5 md:w-5 shrink-0" />
+                    <span className="text-xs md:text-sm leading-tight">Search</span>
                   </TabsTrigger>
-                  <TabsTrigger value="build" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
-                    <Utensils className="h-5 w-5" />
-                    <span className="text-sm md:text-base">Build Meal</span>
+                  <TabsTrigger value="build" className="flex flex-col items-center justify-center text-center gap-1 md:gap-2 py-3 md:py-4 px-1 md:px-3 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
+                    <Utensils className="h-4 w-4 md:h-5 md:w-5 shrink-0" />
+                    <span className="text-xs md:text-sm leading-tight">Build</span>
                   </TabsTrigger>
-                  <TabsTrigger value="compare" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
-                    <Scale className="h-5 w-5" />
-                    <span className="text-sm md:text-base">Compare</span>
+                  <TabsTrigger value="compare" className="flex flex-col items-center justify-center text-center gap-1 md:gap-2 py-3 md:py-4 px-1 md:px-3 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
+                    <Scale className="h-4 w-4 md:h-5 md:w-5 shrink-0" />
+                    <span className="text-xs md:text-sm leading-tight">Compare</span>
                   </TabsTrigger>
                 </TabsList>
 
