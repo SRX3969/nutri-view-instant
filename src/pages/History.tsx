@@ -40,7 +40,7 @@ const History = () => {
 
         <div className="space-y-8">
           <div className="text-center space-y-3 animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold gradient-nature bg-clip-text text-transparent text-shadow-soft">
+            <h1 className="text-5xl md:text-6xl font-bold text-primary text-shadow-soft">
               Analysis History
             </h1>
             <p className="text-lg text-muted-foreground">
