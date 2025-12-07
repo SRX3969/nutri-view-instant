@@ -101,34 +101,34 @@ const Index = () => {
       <Navbar />
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-10">
-        {!results ? <div className="space-y-12">
+        {!results ? <div className="space-y-8 md:space-y-12">
             {/* Hero Section */}
-            <div className="relative min-h-[60vh] flex flex-col items-center justify-center text-center space-y-8">
+            <div className="relative min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center text-center space-y-6 md:space-y-8 px-2">
               <div className="absolute inset-0 -z-10">
                 <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
               </div>
               
-              <div className="space-y-6 animate-fade-in relative">
-                <div className="absolute inset-0 -z-10 bg-card/60 backdrop-blur-xl rounded-3xl border border-primary/20 shadow-2xl" />
+              <div className="space-y-4 md:space-y-6 animate-fade-in relative w-full max-w-4xl">
+                <div className="absolute inset-0 -z-10 bg-card/60 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-primary/20 shadow-2xl" />
                 
-                <div className="px-8 md:px-16 py-12">
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-foreground">
+                <div className="px-4 sm:px-8 md:px-16 py-8 md:py-12">
+                  <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-4 text-foreground leading-tight">
                     Indian Food <span className="text-primary">Nutrition AI</span>
                   </h1>
-                  <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+                  <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                     AI-powered analysis for Indian foods — Thalis, Biryanis, Dosas, Street Foods & more
                   </p>
-                  <div className="flex gap-4 justify-center mt-6">
-                    <Button onClick={scrollToContent} size="lg" className="text-lg gradient-nature text-white">
+                  <div className="flex justify-center mt-4 md:mt-6">
+                    <Button onClick={scrollToContent} size="lg" className="text-base md:text-lg gradient-nature text-white px-6 md:px-8">
                       Get Started
                     </Button>
                   </div>
                 </div>
               </div>
 
-              <Button onClick={scrollToContent} size="lg" className="gradient-gold hover:opacity-90 transition-smooth text-white font-bold px-10 py-7 text-xl rounded-2xl shadow-2xl mt-6 pulse-glow animate-scale-in hover:scale-105">
-                Analyze Indian Food
-                <ArrowDown className="ml-3 h-6 w-6 animate-bounce" />
+              <Button onClick={scrollToContent} size="lg" className="gradient-gold hover:opacity-90 transition-smooth text-white font-bold px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-xl rounded-xl md:rounded-2xl shadow-2xl pulse-glow animate-scale-in hover:scale-105 flex items-center gap-2">
+                <span>Analyze Indian Food</span>
+                <ArrowDown className="h-5 w-5 md:h-6 md:w-6 animate-bounce" />
               </Button>
             </div>
 
@@ -154,14 +154,13 @@ const Index = () => {
                   </TabsTrigger>
                 </TabsList>
 
-                {/* Upload Tab */}
                 <TabsContent value="upload" className="space-y-6">
-                  <Card className="glass border-primary/20 p-6">
-                    <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-3">
-                      <Camera className="h-7 w-7 text-primary" />
-                      Upload or Click Picture
+                  <Card className="glass border-primary/20 p-4 md:p-6">
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 flex items-center gap-2 md:gap-3">
+                      <Camera className="h-5 w-5 md:h-7 md:w-7 text-primary shrink-0" />
+                      <span>Upload or Click Picture</span>
                     </h2>
-                    <p className="text-muted-foreground mb-6">
+                    <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
                       Take a photo or upload an image of your Indian meal for instant AI analysis
                     </p>
                     
@@ -184,12 +183,12 @@ const Index = () => {
 
                 {/* Search Tab */}
                 <TabsContent value="search" className="space-y-6">
-                  <Card className="glass border-primary/20 p-6">
-                    <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-3">
-                      <Search className="h-7 w-7 text-primary" />
-                      Search Indian Food
+                  <Card className="glass border-primary/20 p-4 md:p-6">
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 flex items-center gap-2 md:gap-3">
+                      <Search className="h-5 w-5 md:h-7 md:w-7 text-primary shrink-0" />
+                      <span>Search Indian Food</span>
                     </h2>
-                    <p className="text-muted-foreground mb-6">
+                    <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
                       Search any Indian food — regional dishes, street foods, sweets, homemade meals
                     </p>
                     <SearchFood onCompare={() => setActiveTab("compare")} />
@@ -198,13 +197,13 @@ const Index = () => {
 
                 {/* Build Meal Tab */}
                 <TabsContent value="build" className="space-y-6">
-                  <Card className="glass border-primary/20 p-6">
-                    <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-3">
-                      <Utensils className="h-7 w-7 text-primary" />
-                      Build Your Meal
+                  <Card className="glass border-primary/20 p-4 md:p-6">
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 flex items-center gap-2 md:gap-3">
+                      <Utensils className="h-5 w-5 md:h-7 md:w-7 text-primary shrink-0" />
+                      <span>Build Your Meal</span>
                     </h2>
-                    <p className="text-muted-foreground mb-6">
-                      Add items like "2 Rotis + 1 Katori Dal + 1 Katori Rice" to calculate total nutrition
+                    <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
+                      Add items like "2 Rotis + Dal + Rice" to calculate total nutrition
                     </p>
                     <BuildMeal />
                   </Card>
@@ -212,13 +211,13 @@ const Index = () => {
 
                 {/* Compare Tab */}
                 <TabsContent value="compare" className="space-y-6">
-                  <Card className="glass border-primary/20 p-6">
-                    <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-3">
-                      <Scale className="h-7 w-7 text-primary" />
-                      Compare Foods
+                  <Card className="glass border-primary/20 p-4 md:p-6">
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 flex items-center gap-2 md:gap-3">
+                      <Scale className="h-5 w-5 md:h-7 md:w-7 text-primary shrink-0" />
+                      <span>Compare Foods</span>
                     </h2>
-                    <p className="text-muted-foreground mb-6">
-                      Compare two Indian foods side-by-side — Roti vs Rice, Idli vs Dosa, and more
+                    <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
+                      Compare two Indian foods side-by-side — Roti vs Rice, Idli vs Dosa
                     </p>
                     <FoodComparison />
                   </Card>
@@ -227,31 +226,31 @@ const Index = () => {
             </div>
 
             {/* Features Section */}
-            <div className="grid md:grid-cols-3 gap-6 py-12">
-              <Card className="glass border-primary/20 p-6 text-center hover-lift">
-                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Camera className="h-8 w-8 text-primary" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 py-8 md:py-12">
+              <Card className="glass border-primary/20 p-4 md:p-6 text-center hover-lift">
+                <div className="bg-primary/10 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <Camera className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Indian Food Detection</h3>
-                <p className="text-muted-foreground">
-                  Detects Thalis, Biryanis, Dosas, Rotis, Dals, Street Foods, Sweets & more
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Indian Food Detection</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
+                  Detects Thalis, Biryanis, Dosas, Rotis, Dals, Street Foods & more
                 </p>
               </Card>
-              <Card className="glass border-primary/20 p-6 text-center hover-lift">
-                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Scale className="h-8 w-8 text-primary" />
+              <Card className="glass border-primary/20 p-4 md:p-6 text-center hover-lift">
+                <div className="bg-primary/10 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <Scale className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Indian Portions</h3>
-                <p className="text-muted-foreground">
-                  Measures in Katori, Roti, Ladle, Plate — authentic Indian portion sizes
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Indian Portions</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
+                  Measures in Katori, Roti, Ladle, Plate — authentic portion sizes
                 </p>
               </Card>
-              <Card className="glass border-primary/20 p-6 text-center hover-lift">
-                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Utensils className="h-8 w-8 text-primary" />
+              <Card className="glass border-primary/20 p-4 md:p-6 text-center hover-lift sm:col-span-2 md:col-span-1">
+                <div className="bg-primary/10 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <Utensils className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Health Alerts</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Health Alerts</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Warnings for high oil, ghee, sugar, fried foods with healthier alternatives
                 </p>
               </Card>
