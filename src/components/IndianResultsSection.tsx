@@ -150,7 +150,7 @@ export function IndianResultsSection({
           <Flame className="h-7 w-7 text-primary animate-pulse" />
           <h3 className="text-2xl font-semibold text-foreground">Total Calories</h3>
         </div>
-        <div className="text-7xl font-bold gradient-nature bg-clip-text text-transparent mb-3 bg-primary-foreground">
+        <div className="text-7xl font-bold text-primary mb-3">
           {data.calories}
         </div>
         <p className="text-muted-foreground text-lg">kcal</p>
