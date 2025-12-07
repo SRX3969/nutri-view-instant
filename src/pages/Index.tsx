@@ -113,7 +113,7 @@ const Index = () => {
                 
                 <div className="px-8 md:px-16 py-12">
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-foreground">
-                    Indian Food <span className="gradient-nature bg-clip-text text-transparent bg-primary-foreground">Nutrition AI</span>
+                    Indian Food <span className="text-primary">Nutrition AI</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
                     AI-powered analysis for Indian foods — Thalis, Biryanis, Dosas, Street Foods & more
