@@ -11,7 +11,6 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
-
 interface NutritionData {
   calories: number;
   protein: number;
@@ -44,19 +43,16 @@ interface NutritionData {
     calcium?: number;
   };
 }
-
 const Index = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [results, setResults] = useState<NutritionData | null>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [activeTab, setActiveTab] = useState("upload");
   const [showComparison, setShowComparison] = useState(false);
-
   const analyzeImage = async (file: File) => {
     setIsAnalyzing(true);
     const url = URL.createObjectURL(file);
     setImageUrl(url);
-
     try {
       const reader = new FileReader();
       const base64Promise = new Promise<string>((resolve, reject) => {
@@ -65,20 +61,20 @@ const Index = () => {
       });
       reader.readAsDataURL(file);
       const imageBase64 = await base64Promise;
-
       console.log("Sending image to AI for Indian food analysis...");
-
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-nutrition`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageBase64 })
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          imageBase64
+        })
       });
-
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to analyze image");
       }
-
       const nutritionData: NutritionData = await response.json();
       console.log("Analysis complete:", nutritionData);
       setResults(nutritionData);
@@ -90,25 +86,22 @@ const Index = () => {
       setIsAnalyzing(false);
     }
   };
-
   const handleAnalyzeAnother = () => {
     setResults(null);
     setImageUrl("");
   };
-
   const scrollToContent = () => {
     const contentSection = document.getElementById("content-section");
-    contentSection?.scrollIntoView({ behavior: "smooth" });
+    contentSection?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
+  return <div className="min-h-screen bg-background relative overflow-hidden">
       <FloatingElements />
       <Navbar />
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-10">
-        {!results ? (
-          <div className="space-y-12">
+        {!results ? <div className="space-y-12">
             {/* Hero Section */}
             <div className="relative min-h-[60vh] flex flex-col items-center justify-center text-center space-y-8">
               <div className="absolute inset-0 -z-10">
@@ -120,7 +113,7 @@ const Index = () => {
                 
                 <div className="px-8 md:px-16 py-12">
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-foreground">
-                    Indian Food <span className="gradient-nature bg-clip-text text-transparent">Nutrition AI</span>
+                    Indian Food <span className="gradient-nature bg-clip-text text-transparent bg-primary-foreground">Nutrition AI</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
                     AI-powered analysis for Indian foods — Thalis, Biryanis, Dosas, Street Foods & more
@@ -133,11 +126,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <Button 
-                onClick={scrollToContent} 
-                size="lg" 
-                className="gradient-gold hover:opacity-90 transition-smooth text-white font-bold px-10 py-7 text-xl rounded-2xl shadow-2xl mt-6 pulse-glow animate-scale-in hover:scale-105"
-              >
+              <Button onClick={scrollToContent} size="lg" className="gradient-gold hover:opacity-90 transition-smooth text-white font-bold px-10 py-7 text-xl rounded-2xl shadow-2xl mt-6 pulse-glow animate-scale-in hover:scale-105">
                 Analyze Indian Food
                 <ArrowDown className="ml-3 h-6 w-6 animate-bounce" />
               </Button>
@@ -147,31 +136,19 @@ const Index = () => {
             <div id="content-section" className="scroll-mt-32">
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList className="grid w-full grid-cols-4 h-auto p-2 bg-muted/50 rounded-2xl mb-8">
-                  <TabsTrigger 
-                    value="upload" 
-                    className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg"
-                  >
+                  <TabsTrigger value="upload" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
                     <Camera className="h-5 w-5" />
                     <span className="text-sm md:text-base">Upload/Click</span>
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="search"
-                    className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg"
-                  >
+                  <TabsTrigger value="search" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
                     <Search className="h-5 w-5" />
                     <span className="text-sm md:text-base">Search Food</span>
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="build"
-                    className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg"
-                  >
+                  <TabsTrigger value="build" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
                     <Utensils className="h-5 w-5" />
                     <span className="text-sm md:text-base">Build Meal</span>
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="compare"
-                    className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg"
-                  >
+                  <TabsTrigger value="compare" className="flex flex-col md:flex-row items-center gap-2 py-4 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg">
                     <Scale className="h-5 w-5" />
                     <span className="text-sm md:text-base">Compare</span>
                   </TabsTrigger>
@@ -188,8 +165,7 @@ const Index = () => {
                       Take a photo or upload an image of your Indian meal for instant AI analysis
                     </p>
                     
-                    {isAnalyzing ? (
-                      <div className="flex flex-col items-center justify-center py-20 space-y-6 animate-fade-in">
+                    {isAnalyzing ? <div className="flex flex-col items-center justify-center py-20 space-y-6 animate-fade-in">
                         <div className="relative">
                           <Loader2 className="h-20 w-20 animate-spin text-primary" />
                           <div className="absolute inset-0 h-20 w-20 animate-ping text-primary/20">
@@ -202,10 +178,7 @@ const Index = () => {
                         <p className="text-sm text-muted-foreground">
                           Detecting items, portions & calculating nutrition
                         </p>
-                      </div>
-                    ) : (
-                      <UploadZone onImageSelect={analyzeImage} isAnalyzing={isAnalyzing} />
-                    )}
+                      </div> : <UploadZone onImageSelect={analyzeImage} isAnalyzing={isAnalyzing} />}
                   </Card>
                 </TabsContent>
 
@@ -283,14 +256,7 @@ const Index = () => {
                 </p>
               </Card>
             </div>
-          </div>
-        ) : (
-          <IndianResultsSection 
-            data={results} 
-            imageUrl={imageUrl} 
-            onAnalyzeAnother={handleAnalyzeAnother} 
-          />
-        )}
+          </div> : <IndianResultsSection data={results} imageUrl={imageUrl} onAnalyzeAnother={handleAnalyzeAnother} />}
       </main>
 
       {/* Footer */}
@@ -301,8 +267,6 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
